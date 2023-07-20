@@ -1,0 +1,34 @@
+---
+title: "proj4_grubbs"
+output: html_document
+---
+
+```{r}
+data <- read.csv("/Users/allisonselwah/Downloads/MAT4376/project4/Flights_2019_v2.csv")
+
+summary(data$DEP_DELAY)
+summary(data$ARR_DELAY)
+
+# Grubbs' Test
+
+# https://statsandr.com/blog/outliers-detection-in-r/#grubbss-test
+
+# install.packages("outliers")
+library(outliers)
+
+# outlier
+test_high1 <- grubbs.test(data$DEP_DELAY)
+test_high1
+
+# not an outlier
+test_low1 <- grubbs.test(data$DEP_DELAY, opposite = TRUE)
+test_low1
+
+# outlier
+test_high2 <- grubbs.test(data$ARR_DELAY)
+test_high2
+
+# not an outlier 
+test_low2 <- grubbs.test(data$ARR_DELAY, opposite = TRUE)
+test_low2
+```
