@@ -1,0 +1,44 @@
+---
+title: "proj4_random"
+output: html_document
+---
+
+```{r}
+data <- read.csv("/Users/allisonselwah/Downloads/MAT4376/project4/Flights_2019_v2.csv")
+
+df <- data.frame(data)
+
+library(ggplot2)
+
+library(dplyr)
+
+rand_df1 <- df[sample(nrow(df), size=10000), ]
+
+ggplot(rand_df1) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+df <- df[!(row.names(rand_df1) %in% c("index")),]
+
+rand_df2 <- df[sample(nrow(df), size=10000), ]
+
+ggplot(rand_df2) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+df <- df[!(row.names(rand_df2) %in% c("index")),]
+
+rand_df3 <- df[sample(nrow(df), size=10000), ]
+
+ggplot(rand_df3) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+df <- df[!(row.names(rand_df3) %in% c("index")),]
+
+rand_df4 <- df[sample(nrow(df), size=10000), ]
+
+ggplot(rand_df4) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+df <- df[!(row.names(rand_df4) %in% c("index")),]
+
+rand_df5 <- df[sample(nrow(df), size=10000), ]
+
+ggplot(rand_df5) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+df <- df[!(row.names(rand_df5) %in% c("index")),]
+```
