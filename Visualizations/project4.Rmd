@@ -1,0 +1,197 @@
+---
+title: "Project 4"
+output: html_document
+---
+
+```{r}
+data <- read.csv("/Users/allisonselwah/Downloads/MAT4376/project4/Flights_2019_v2.csv")
+
+data <- data.frame(data)
+
+library(ggplot2)
+
+library(dplyr)
+
+# delays by day
+
+ggplot(data) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+# by state
+
+ggplot(data) + geom_point(aes(x=ORIGIN_STATE_ABR, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+ggplot(data) + geom_point(aes(x=DEST_STATE_ABR, y=ARR_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+# arrival time/delay by day
+
+ggplot(data) + geom_point(aes(x=ARR_TIME, y=ARR_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+# looking into the states with the most flights (ORIGIN)
+
+CA <- filter(data, ORIGIN_STATE_ABR %in% c('CA'))
+
+ggplot(CA) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("California")
+
+IL <- filter(data, ORIGIN_STATE_ABR %in% c('IL'))
+
+ggplot(IL) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Illinois")
+
+TX <- filter(data, ORIGIN_STATE_ABR %in% c('TX'))
+
+ggplot(TX) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Texas")
+
+NY <- filter(data, ORIGIN_STATE_ABR %in% c('NY'))
+
+ggplot(NY) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("New York")
+
+FL <- filter(data, ORIGIN_STATE_ABR %in% c('FL'))
+
+ggplot(FL) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Florida")
+
+GA <- filter(data, ORIGIN_STATE_ABR %in% c('GA'))
+
+ggplot(GA) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Georgia")
+
+NC <- filter(data, ORIGIN_STATE_ABR %in% c('NC'))
+
+ggplot(NC) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("North Carolina")
+
+# looking into the states with the most flights (DESTINATION)
+
+CA <- filter(data, DEST_STATE_ABR %in% c('CA'))
+
+ggplot(CA) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("California")
+
+IL <- filter(data, DEST_STATE_ABR %in% c('IL'))
+
+ggplot(IL) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Illinois")
+
+TX <- filter(data, DEST_STATE_ABR %in% c('TX'))
+
+ggplot(TX) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Texas")
+
+NY <- filter(data, DEST_STATE_ABR %in% c('NY'))
+
+ggplot(NY) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("New York")
+
+FL <- filter(data, DEST_STATE_ABR %in% c('FL'))
+
+ggplot(FL) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Florida")
+
+GA <- filter(data, DEST_STATE_ABR %in% c('GA'))
+
+ggplot(GA) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Georgia")
+
+NC <- filter(data, DEST_STATE_ABR %in% c('NC'))
+
+ggplot(NC) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("North Carolina")
+
+# looking into the states with the least flights (ORIGIN)
+
+ME <- filter(data, ORIGIN_STATE_ABR %in% c('ME'))
+
+ggplot(ME) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Maine")
+
+TT <- filter(data, ORIGIN_STATE_ABR %in% c('TT'))
+
+ggplot(TT) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Trust Territories")
+
+NH <- filter(data, ORIGIN_STATE_ABR %in% c('NH'))
+
+ggplot(NH) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("New Hampshire")
+
+VI <- filter(data, ORIGIN_STATE_ABR %in% c('VI'))
+
+ggplot(VI) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Virgin Islands")
+
+VT <- filter(data, ORIGIN_STATE_ABR %in% c('VT'))
+
+ggplot(VT) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Vermont")
+
+WV <- filter(data, ORIGIN_STATE_ABR %in% c('WV'))
+
+ggplot(WV) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("West Virginia")
+
+WY <- filter(data, ORIGIN_STATE_ABR %in% c('WY'))
+
+ggplot(WY) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Wyoming")
+
+# looking into the states with the least flights (DESTINATION)
+
+ME <- filter(data, DEST_STATE_ABR %in% c('ME'))
+
+ggplot(ME) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Maine")
+
+TT <- filter(data, DEST_STATE_ABR %in% c('TT'))
+
+ggplot(TT) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Trust Territories")
+
+NH <- filter(data, DEST_STATE_ABR %in% c('NH'))
+
+ggplot(NH) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("New Hampshire")
+
+VI <- filter(data, DEST_STATE_ABR %in% c('VI'))
+
+ggplot(VI) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Virgin Islands")
+
+VT <- filter(data, DEST_STATE_ABR %in% c('VT'))
+
+ggplot(VT) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Vermont")
+
+WV <- filter(data, DEST_STATE_ABR %in% c('WV'))
+
+ggplot(WV) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("West Virginia")
+
+WY <- filter(data, DEST_STATE_ABR %in% c('WY'))
+
+ggplot(WY) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Wyoming")
+
+# all highest states - dest
+
+high_dest <- filter(data, DEST_STATE_ABR %in% c('NY','GA','IL','FL','NC','CA','TX'))
+
+ggplot(high_dest) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Highest States Destination")
+
+# all highest states - origin
+
+high_origin <- filter(data, ORIGIN_STATE_ABR %in% c('NY','GA','IL','FL','NC','CA','TX'))
+
+ggplot(high_origin) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Highest States Origin")
+
+# all lowest states - dest
+
+low_dest <- filter(data, DEST_STATE_ABR %in% c('WY','ME','NH','TT','VI','VT','WV'))
+
+ggplot(low_dest) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Lowest States Destination")
+
+# all lowest states - origin
+
+low_origin <- filter(data, ORIGIN_STATE_ABR %in% c('WY','ME','NH','TT','VI','VT','WV'))
+
+ggplot(low_origin) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Lowest States Origin")
+```
+
+```{r, echo = FALSE}
+# library(nycflights13)
+# library(dplyr)
+# library(maps)
+# library(geosphere)
+# airports
+# 
+# usairports <- filter(airports, lat < 48.5)
+# usairports <- filter(usairports, lon > -130)
+# usairports <- filter(usairports, faa!="JFK") #filter out jfk
+# jfk <- filter(airports, faa=="JFK") #separate df for jfk
+# 
+# jfk
+# 
+# #create basemap
+# map("world", regions=c("usa"), fill=T, col="grey8", bg="grey15", ylim=c(21.0,50.0), xlim=c(-130.0,-65.0))
+# #overlay airports
+# points(usairports$lon,usairports$lat, pch=3, cex=0.1, col="chocolate1")
+# 
+# for (i in (1:dim(usairports)[1])) {
+# inter <- gcIntermediate(c(jfk$lon[1], jfk$lat[1]), c(usairports$lon[i], usairports$lat[i]), n=200)
+# lines(inter, lwd=0.1, col="turquoise2")
+# }
+```
