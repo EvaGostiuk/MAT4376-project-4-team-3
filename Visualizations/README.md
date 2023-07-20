@@ -11,7 +11,7 @@
 
 ### Histogram of Origin Abbreviation
 
-![Histogram of Origin Abbreviation](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/HIST_Org_ABRV.png?raw=true)
+![Histogram of Origin Abbreviation](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/HIST_Org_ABRV.png?raw=true)
 
 
 &nbsp;
@@ -21,7 +21,7 @@
 
 ### Frequency of Day of Week - Version 1
 
-![Frequency of Day of Week - Version 1](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Freq_DOW.png?raw=true)
+![Frequency of Day of Week - Version 1](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/Freq_DOW.png?raw=true)
 
 
 &nbsp;
@@ -30,7 +30,7 @@
 
 ### Pie Chart of Frequency of Day of Week - Version 2
 
-![Pie Chart of Frequency of Day of Week - Version 2](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/PIE_DOW_Freq.png?raw=true)
+![Pie Chart of Frequency of Day of Week - Version 2](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/PIE_DOW_Freq.png?raw=true)
 
 
 &nbsp;
@@ -39,7 +39,7 @@
 
 ### Arrival Delay Scatter
 
-![Arrival Delay Scatter](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/ARR_Delay_Scatter.png?raw=true)
+![Arrival Delay Scatter](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/ARR_Delay_Scatter.png?raw=true)
 
 
 &nbsp;
@@ -48,7 +48,7 @@
 
 ### Histogram of Arrival/Departure Delay Comparison
 
-![Histogram of Arrival/Departure Delay Comparison](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Hist_ARR_DEP_Delay.png?raw=true)
+![Histogram of Arrival/Departure Delay Comparison](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/Overall_Dataset/Hist_ARR_DEP_Delay.png?raw=true)
 
 
 &nbsp;
