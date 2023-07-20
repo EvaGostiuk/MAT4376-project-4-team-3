@@ -2,7 +2,7 @@
 
 ### Histogram of Destination Abbreviation
 
-![Histogram of Destination Abbreviation](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/HIST_Dest_ABRV.png?raw=true)
+![Histogram of Destination Abbreviation](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/HIST_Dest_ABRV.png?raw=true)
 
 
 &nbsp;
