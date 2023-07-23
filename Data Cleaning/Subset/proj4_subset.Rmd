@@ -1,0 +1,26 @@
+---
+title: "proj4_subset"
+output: html_document
+---
+
+```{r}
+suppressPackageStartupMessages(library(readxl))
+
+suppressPackageStartupMessages(library(dplyr))
+
+suppressPackageStartupMessages(library(writexl))
+
+df <- read_excel("/Users/allisonselwah/Downloads/MAT4376/project4/Flights_2019_v3.xlsx")
+
+## For excluding columns: df is the dataset, group != filters the group column, select chooses which columns to be included
+
+# df <- subset(df, group != 'treatment', select = c("index", "landing_page", "converted"))
+
+rand_df <- df[sample(nrow(df), size=5000), ]
+
+# EXPORTING TO A SECOND EXCEL FILE 
+
+sheets <- list("subset" = rand_df)
+
+write_xlsx(sheets,"/Users/allisonselwah/Downloads/MAT4376/project4/flight_2019_subset.xlsx")
+```
