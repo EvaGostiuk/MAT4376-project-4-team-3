@@ -13,14 +13,14 @@
 ![Arrival Delay Scatter](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/ARR_Delay_Scatter.png?raw=true)
 &nbsp;
 ### Histogram of Arrival/Departure Delay Comparison
-![Histogram of Arrival/Departure Delay Comparison](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/Overall_Dataset/Hist_ARR_DEP_Delay.png?raw=true)
+![Histogram of Arrival/Departure Delay Comparison](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/Hist_ARR_DEP_Delay.png?raw=true)
 &nbsp;
 ### Arrivals Scatter Plot 
-![Arrivals Scatter Plot](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/Overall_Dataset/arrivals.png?raw=true)
+![Arrivals Scatter Plot](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/arrivals.png?raw=true)
 &nbsp;
 ### Destination and Arrival Delay Plot 
-![Destination and Arrival Delay Plot](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/Overall_Dataset/dest_arr_delay.png?raw=true)
+![Destination and Arrival Delay Plot](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/dest_arr_delay.png?raw=true)
 &nbsp;
 ### Origin Departure Delay Plot
-![Origin Departure Delay Plot](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/Overall_Dataset/origin_dep_delay.png?raw=true)
+![Origin Departure Delay Plot](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/origin_dep_delay.png?raw=true)
 &nbsp;
