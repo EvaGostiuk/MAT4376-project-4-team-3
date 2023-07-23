@@ -14,7 +14,7 @@
 
 &nbsp;
 
-### [Virgina README](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Virgina/README.md)
+### [Virgina README](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Virginia/README.md)
 
 &nbsp;
 
