@@ -56,9 +56,10 @@
 
 &nbsp;
 
-### title
+# README for Visualizations
 
-![](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/[]?raw=true)
+### Days of the Week
 
+![Day of Week README](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Day_of_Week/README.md)
 
 &nbsp;
