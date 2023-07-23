@@ -1,0 +1,60 @@
+---
+title: "proj4_VA"
+output: html_document
+---
+
+```{r} 
+# data <- read.csv("/Users/allisonselwah/Downloads/MAT4376/project4/Flights_2019_v2.csv")
+# 
+# df <- data.frame(data)
+
+library(ggplot2)
+
+library(dplyr)
+
+# Origin: VA
+
+data <- filter(df, ORIGIN_STATE_ABR %in% c('VA'))
+
+ggplot(data) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Flights Originating in Virginia")
+
+ggplot(data) + geom_point(aes(x=ARR_TIME, y=ARR_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+ggplot(data) + geom_point(aes(x=DEST_STATE_ABR, y=ARR_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+# Destination: VA
+
+data <- filter(df, DEST_STATE_ABR %in% c('VA'))
+
+ggplot(data) + geom_point(aes(x=ARR_DELAY, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51")) + ggtitle("Flights Destined For Virginia")
+
+ggplot(data) + geom_point(aes(x=ARR_TIME, y=ARR_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+ggplot(data) + geom_point(aes(x=ORIGIN_STATE_ABR, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+# # # USING THE NEW DATASET # # #
+
+data <- read.csv("/Users/allisonselwah/Downloads/MAT4376/project4/Flights_2019_v3.csv")
+
+df1 <- data.frame(data)
+
+# ORIGIN VA
+
+data1 <- filter(df1, ORIGIN_STATE_ABR %in% c('VA'))
+
+ggplot(data1) + geom_point(aes(x=ORIGIN_IATA, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+ggplot(data1) + geom_point(aes(x=ORIGIN_PRCP, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+ggplot(data1) + geom_point(aes(x=ORIGIN_SNOW, y=DEP_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+# DESTINATION VA
+
+data1 <- filter(df1, DEST_STATE_ABR %in% c('VA'))
+
+ggplot(data1) + geom_point(aes(x=DEST_IATA, y=ARR_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+ggplot(data1) + geom_point(aes(x=DEST_PRCP, y=ARR_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+
+ggplot(data1) + geom_point(aes(x=DEST_SNOW, y=ARR_DELAY, color=DAY_OF_WEEK_STR)) + scale_color_manual(values=c("#264653", "#287271", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51"))
+```
