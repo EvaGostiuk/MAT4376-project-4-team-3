@@ -1,0 +1,99 @@
+---
+title: "proj4_SOD"
+output: html_document
+---
+
+```{r}
+# necessary libraries
+
+library(ggplot2)
+library(foreach)
+library(dplyr)
+library(plyr)
+
+# dataset (subset of 5,000 datapoints from full dataset)
+
+data <- read.csv("/Users/allisonselwah/Downloads/MAT4376/project4/flight_2019_subset.csv")
+
+data <- data.frame(data)
+
+data <- subset(data, select = c("INDEX", "DEP_DELAY", "ARR_DELAY"))
+
+data <- na.omit(data)
+
+#' Subspace outlier detection (SOD) algorithm 
+#' 
+#' https://github.com/cran/HighDimOut/blob/master/R/HighDimOut.R
+#' 
+#' A function to calculate the shared nearest neighbors (SNN)
+#' 
+#' This function calculate the shared nearest neighbors (SNN). 
+#' SNN is reported to be more robust than k nearest neighbors. 
+#' Firstly, the k nearest neighbor distances for each observation is calculated. 
+#' Then, the shared nearest neighbor similarity is calculated based on the result of k nearest neighbor.
+#' Note that k.nn should be greater than k.sel.
+#' 
+#' @param data is the data frame containing the observations (should be numeric data). Each row represents an observation and each variable is stored in one column.
+#' @param k.nn specifies the value used for calculating the shared nearest neighbors.
+#' @param k.sel specifies the number of shared nearest neighbors
+#'
+#' @return The function returns the matrix containing the indices of top k shared nearest neighbors for each observation
+#'
+
+Func.SNN <- function(data, k.nn, k.sel) {
+    #Get the knn index
+    mat.ind <- FNN::get.knn(data = data, k = k.nn)$nn.index
+    #Define distance function
+    func.dist <- function(x1, x2) {
+        length(intersect(x1, x2))
+    }
+    #Count the distance using the customized function
+    mat.count <- as.matrix(proxy::dist(x = mat.ind, method = func.dist, diag = T, upper = T))
+    #Formulate the final matrix for use
+    mat.final <- plyr::aaply(.data = mat.count, .margins = 1, .fun = function(x) {order(x, decreasing=T)[1:k.sel]})
+    return(mat.final)
+}
+
+#' Subspace outlier detection (SOD) algorithm 
+#' 
+#' This function performs suspace outlier detection algorithm 
+#' The implemented method is based on the work of Krigel, H.P., Kroger, P., Schubert, E., Zimek, A., Outlier detection in axis-parallel subspaces of high dimensional data, 2009.
+#' 
+#' @param data is the data frame containing the observations. Each row represents an observation and each variable is stored in one column.
+#' @param k.nn specifies the value used for calculating the shared nearest neighbors. Note that k.nn should be greater than k.sel.
+#' @param k.sel specifies the number shared nearest neighbors. It can be interpreted as the number of reference set for constructing the subspace hyperplane.
+#' @param alpha specifies the lower limit for selecting subspace. 0.8 is set as default as suggested in the original paper.
+#' 
+#' @return The function returns a vector containing the SOD outlier scores for each observation
+#' 
+
+Func.SOD <- function(data, k.nn, k.sel, alpha=0.8) {
+    i=j=NULL
+    mat.ref <- Func.SNN(data = data, k.nn = k.nn, k.sel = k.sel)
+    res <- foreach::foreach(i=1:dim(data)[1], .combine = c) %dopar% {
+        obs <- data[i,]
+        ref <- as.matrix(data[mat.ref[i,],])
+        means <- colMeans(ref)
+        var.total <- sum(aaply(.data = ref, .margins = 1, .fun = function(x) sum((x-means)^2)))/k.sel
+        var.expect <- alpha*var.total/dim(data)[2]
+        var.actual <- foreach(j = 1:dim(ref)[2], .combine = c) %dopar% {
+            var(ref[,j])
+        }
+        var.ind <- ifelse(var.actual<var.expect, yes = 1, no = 0)
+        res.hyper <- sqrt(sum(var.ind*(obs-means)^2))/length(which(var.ind==1))
+        return(res.hyper)
+    }
+    return(res)
+}
+
+# SOD on the dataset
+
+res.SOD <- Func.SOD(data = data, k.nn = 10, k.sel = 5, alpha = 0.8)
+data.temp <- data
+data.temp$Ind <- NA
+data.temp[order(res.SOD, decreasing = TRUE)[1:10],"Ind"] <- "Outlier"
+data.temp[is.na(data.temp$Ind),"Ind"] <- "Inlier"
+data.temp$Ind <- factor(data.temp$Ind)
+ggplot(data = data.temp) + geom_point(aes(x = ARR_DELAY, y = DEP_DELAY, color=Ind, shape=Ind)) + scale_color_manual(values=c("#e9c46a","#287271")) + ggtitle("Subspace Outlier Detection Algorithm")
+(data.temp <- filter(data.temp, Ind %in% c('Outlier')))
+```
