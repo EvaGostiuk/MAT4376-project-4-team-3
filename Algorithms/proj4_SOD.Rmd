@@ -96,4 +96,18 @@ data.temp[is.na(data.temp$Ind),"Ind"] <- "Inlier"
 data.temp$Ind <- factor(data.temp$Ind)
 ggplot(data = data.temp) + geom_point(aes(x = ARR_DELAY, y = DEP_DELAY, color=Ind, shape=Ind)) + scale_color_manual(values=c("#e9c46a","#287271")) + ggtitle("Subspace Outlier Detection Algorithm")
 (data.temp <- filter(data.temp, Ind %in% c('Outlier')))
+
+# IDENTIFIED OUTLIERS BELOW
+
+#     INDEX DEP_DELAY ARR_DELAY     Ind
+# 1  259286       966       969 Outlier
+# 2  467279        38        36 Outlier
+# 3   42767       668       686 Outlier
+# 4  477922      1216      1209 Outlier
+# 5   93182      1291      1270 Outlier
+# 6  527628       470       474 Outlier
+# 7  381994       592       586 Outlier
+# 8  467791       997      1020 Outlier
+# 9  312513       599       588 Outlier
+# 10 467358        14        -3 Outlier
 ```
