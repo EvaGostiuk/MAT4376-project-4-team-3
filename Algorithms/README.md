@@ -1,19 +1,21 @@
-# Algorithms Used to Detect Outliers/Anomalous Datapoints
+## Algorithms Used to Detect Outliers/Anomalous Datapoints
 
-## Grubb's Test
+Using at least 4 anomaly detection algorithms seen in class, identify anomalous observations in the dataset. 
 
-
-
-## Principle Component Analysis (PCA)
+### Grubb's Test
 
 
 
-## Subspace Outlier Detection (SOD) Algorithm
+### Principle Component Analysis (PCA)
 
 
 
-## Density-Based Spatial Clustering of Applications with Noise (DBSCAN)
+### Subspace Outlier Detection (SOD) Algorithm
 
 
 
-## K-Nearest Neighbours (KNN)
+### Density-Based Spatial Clustering of Applications with Noise (DBSCAN)
+
+
+
+### K-Nearest Neighbours (KNN)
