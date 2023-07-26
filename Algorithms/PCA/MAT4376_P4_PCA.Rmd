@@ -1,0 +1,331 @@
+---
+title: "MAT4376_P4_PCA"
+output: html_document
+date: "2023-07-23"
+---
+Libraries
+```{r,warning=FALSE,message=FALSE}
+library(car)
+library(factoextra)
+library(dplyr)
+library(ggplot2)
+library(ggfortify)
+library(corrplot)
+library(knitr)
+library(rmarkdown)
+library(cluster)
+```
+
+## Creating New Subsets:
+```{r}
+## New Subset, n = 5000
+data <- read.csv("~/R/flight_2019_subset.csv")
+## Creating sorted subsets
+# subset 0 = normal subset with no specifications
+# subset 1 = destination states - LARGEST
+# subset 2 = origin states - LARGEST
+# subset 3 = destination states - SMALLEST
+# subset 4 = origin states - SMALLEST
+# vrg = virgina state both destination and origin
+
+```
+
+## Subset 0
+```{r}
+subset0 <- data[, c("DEP_DELAY", "ARR_DELAY", "X")]
+subset0 <- na.omit(subset0)
+subset0.pca <- prcomp(subset0[, -3],  
+                              scale = TRUE)
+summary(subset0.pca)
+
+# Scree plot
+fviz_eig(subset0.pca, addlabels = TRUE, barfill = "#264653",
+         barcolor = "#264653", linecolor = "black",) 
+
+# Create a scatter plot with colored points based on the state information
+PC1_s0 <- subset0.pca$x[,1]
+PC2_s0 <- subset0.pca$x[,2]
+x0 <- subset0$X
+# PCA for plotting by autoplot
+s0_auto <- autoplot(pam(subset0[-3], 3), frame = TRUE, frame.type = 'norm') +
+  labs(title="PCA Plot - Subset")
+s0_auto <- s0_auto + 
+  scale_fill_manual(values = c("#8ab17d", "#287271", "#f4a261")) + 
+  scale_color_manual(values = c("#8ab17d", "#287271", "#f4a261")) 
+print(s0_auto)
+  
+s0_auto_with_labels <- s0_auto +
+  geom_text(data = subset0, aes(x = PC1_s0, y = PC2_s0, label = x0), color = "black", size = 3)
+
+# Outlier Index:
+# 93182
+# 47792
+# 259286
+# 467791
+# 42767
+# 479941
+# 312513
+# 381994
+# 451093
+# 259423
+# 270720
+# 352242
+# 382028
+# 46425
+# 93004
+# 46425
+```
+
+## Subset 1
+```{r}
+# Selecting only the largest states for Destination States
+dest_abrv <- data$DEST_STATE_ABR
+subset1_state <- subset(data, dest_abrv == 'CA' | dest_abrv == 'FL'| dest_abrv == 'GA'| dest_abrv == 'IL'| dest_abrv == 'NY'| dest_abrv == 'TX'| dest_abrv == 'NC')
+
+#PCA
+
+# only keeping the necessary columns
+subset1 <- subset1_state[, c("DEP_DELAY", "ARR_DELAY", "DEST_STATE_ABR")]
+subset1 <- na.omit(subset1)
+subset1.pca <- prcomp(subset1[, -3],  
+                              scale = TRUE)
+summary(subset1.pca)
+
+# Scree plot
+fviz_eig(subset1.pca, addlabels = TRUE, barfill = "#264653",
+         barcolor = "#264653", linecolor = "black",) 
+
+# destination states - eigenvalue plot
+fviz_pca_ind(subset1.pca, 
+              habillage=subset1$DEST_STATE_ABR,
+              addEllipses=TRUE)
+
+# Create a scatter plot with colored points based on the state information
+PC1_s1 <- subset1.pca$x[,1]
+PC2_s1 <- subset1.pca$x[,2]
+
+ggplot(subset1, 
+       aes(x = PC1_s1, 
+           y = PC2_s1, 
+           color = DEST_STATE_ABR)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values = c("#264653", "#287271", "#2a9d8f", "#8ab17d","#e9c46a", "#f4a261", "#e76f51")) +
+  labs(title = "Outlier Detection using PCA - Largest Destination States", color = "State", x = "PC1", y = "PC2")
+
+# PCA for plotting by autoplot
+s1_auto <- autoplot(pam(subset1[-3], 3), frame = TRUE, frame.type = 'norm') +
+  labs(title="PCA Plot - Largest Destination States")
+s1_auto + 
+  scale_fill_manual(values = c("#8ab17d", "#287271", "#f4a261")) + 
+  scale_color_manual(values = c("#8ab17d", "#287271", "#f4a261"))
+
+```
+
+## Subset 2
+```{r}
+# Selecting only the largest states for Origin States
+org_abrv <-data$ORIGIN_STATE_ABR
+subset2 <- subset(data, org_abrv == 'NC'| org_abrv == 'TX'| org_abrv == 'NY'| org_abrv == 'IL'| org_abrv == 'GA'| org_abrv == 'FL'| org_abrv == 'CA')
+
+# PCA
+
+# Only keeping necessary coloumns
+subset2 <- subset2[, c("DEP_DELAY", "ARR_DELAY", "ORIGIN_STATE_ABR")]
+subset2<- na.omit(subset2)
+subset2.pca <- prcomp(subset2[, -3],  
+                   scale = TRUE)
+summary(subset2.pca)
+fviz_pca_ind(subset2.pca, 
+             habillage=subset2$ORIGIN_STATE_ABR,
+             addEllipses=TRUE)
+
+
+# Create a scatter plot with colored points based on the state information
+
+PC1_s2 <- subset2.pca$x[,1]
+PC2_s2 <- subset2.pca$x[,2]
+ggplot(subset2, 
+       aes(x = PC1_s2, 
+           y = PC2_s2, 
+           color = ORIGIN_STATE_ABR)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values = c("#264653", "#287271", "#2a9d8f", "#8ab17d","#e9c46a", "#f4a261", "#e76f51")) +
+  labs(title = "Outlier Detection using PCA - Largest Origin States", color = "State", x = "PC1", y = "PC2")
+
+# PCA for plotting by autoplot
+
+s2_auto <- autoplot(pam(subset2[-3], 3), frame = TRUE, frame.type = 'norm') +
+  labs(title="PCA Plot -  Largest Origin States")
+s2_auto + 
+  scale_fill_manual(values = c("#2a9d8f", "#e9c46a", "#e76f51")) + 
+  scale_color_manual(values = c("#2a9d8f", "#e9c46a", "#e76f51"))
+
+```
+
+## Subset 3
+```{r}
+# Selecting only the smallest Destination States
+subset3 <- filter(data, DEST_STATE_ABR %in%
+                    c('WY','ME','NH','TT','VI','VT','WV'))
+## PCA
+
+# only keeping the necessary columns
+subset3 <- subset3[, c("DEP_DELAY", "ARR_DELAY", "DEST_STATE_ABR")]
+subset3 <- na.omit(subset3)
+subset3.pca <- prcomp(subset3[, -3],  
+                              scale = TRUE)
+summary(subset3.pca)
+
+
+# Scree plot
+fviz_eig(subset3.pca, addlabels = TRUE, barfill = "#264653",
+         barcolor = "#264653", linecolor = "black",) 
+
+# destination states - eigenvalue plot
+fviz_pca_ind(subset3.pca, 
+              habillage=subset3$DEST_STATE_ABR,
+              addEllipses=TRUE)
+
+# Create a scatter plot with colored points based on the state information
+PC1_s3 <- subset3.pca$x[,1]
+PC2_s3 <- subset3.pca$x[,2]
+ggplot(subset3, 
+       aes(x = PC1_s3, 
+           y = PC2_s3, 
+           color = DEST_STATE_ABR)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values = c("#264653", "#287271", "#2a9d8f", "#8ab17d","#e9c46a", "#f4a261", "#e76f51")) +
+  labs(title = "Outlier Detection using PCA - Smallest Destination States", color = "State", x = "PC1", y = "PC2")
+
+# PCA for plotting by autoplot
+s3_auto <- autoplot(pam(subset3[-3], 3), frame = TRUE, frame.type = 'norm') +
+  labs(title="PCA Plot - Smallest Destination States")
+s3_auto + 
+  scale_fill_manual(values = c("#8ab17d", "#287271", "#f4a261")) + 
+  scale_color_manual(values = c("#8ab17d", "#287271", "#f4a261"))
+
+
+
+```
+
+
+## Subset 4
+```{r}
+# Selecting only the smallest Origin States
+subset4 <- filter(data, ORIGIN_STATE_ABR %in%
+                    c('WY','ME','NH','TT','VI','VT','WV'))
+# PCA
+
+# Only keeping necessary coloumns
+subset4 <- subset4[, c("DEP_DELAY", "ARR_DELAY", "ORIGIN_STATE_ABR")]
+subset4<- na.omit(subset4)
+subset4.pca <- prcomp(subset4[, -3],  
+                   scale = TRUE)
+summary(subset4.pca)
+fviz_pca_ind(subset4.pca, 
+             habillage=subset4$ORIGIN_STATE_ABR,
+             addEllipses=TRUE)
+
+
+# Create a scatter plot with colored points based on the state information
+
+PC1_s4 <- subset4.pca$x[,1]
+PC2_s4 <- subset4.pca$x[,2]
+ggplot(subset4, 
+       aes(x = PC1_s4, 
+           y = PC2_s4, 
+           color = ORIGIN_STATE_ABR)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values = c("#264653", "#287271", "#2a9d8f", "#8ab17d","#e9c46a", "#f4a261", "#e76f51")) +
+  labs(title = "Outlier Detection using PCA - Smallest Origin States", color = "State", x = "PC1", y = "PC2")
+
+# PCA for plotting by autoplot
+
+s4_auto <- autoplot(pam(subset4[-3], 3), frame = TRUE, frame.type = 'norm') +
+  labs(title="PCA Plot - Smallest Origin States")
+s4_auto + 
+  scale_fill_manual(values = c("#2a9d8f", "#e9c46a", "#e76f51")) + 
+  scale_color_manual(values = c("#2a9d8f", "#e9c46a", "#e76f51"))
+
+```
+## Virgina Subset
+```{r}
+# Origin Virgina Subset
+org_abrv <-data$ORIGIN_STATE_ABR
+subset5 <- subset(data, org_abrv == 'VA')
+
+# Only keeping necessary coloumns
+subset5 <- subset5[, c("DEP_DELAY", "ARR_DELAY", "ORIGIN_STATE_ABR")]
+subset5 <- na.omit(subset5)
+subset5.pca <- prcomp(subset5[, -3],  
+                   scale = TRUE)
+summary(subset5.pca)
+
+# Create a scatter plot with colored points based on the state information
+
+PC1_s5 <- subset5.pca$x[,1]
+PC2_s5 <- subset5.pca$x[,2]
+ggplot(subset5, 
+       aes(x = PC1_s5, 
+           y = PC2_s5, 
+           color = ORIGIN_STATE_ABR)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values = c("#2a9d8f")) +
+  labs(title = "Outlier Detection using PCA - Virgina (Origin)", color = "State", x = "PC1", y = "PC2")
+
+# PCA for plotting by autoplot
+
+s5_auto <- autoplot(pam(subset5[-3], 2), frame = TRUE, frame.type = 'norm') +
+  labs(title="PCA Plot -  Virgina (Origin)")
+s5_auto + 
+  scale_fill_manual(values = c("#2a9d8f", "#e9c46a", "#e76f51")) + 
+  scale_color_manual(values = c("#2a9d8f", "#e9c46a", "#e76f51"))
+
+# Virgina Destination
+
+subset5.1 <- subset(data, dest_abrv == 'VA')
+
+# PCA
+
+# Only keeping necessary coloumns
+subset5.1 <- subset5.1[, c("DEP_DELAY", "ARR_DELAY", "DEST_STATE_ABR")]
+subset5.1 <- na.omit(subset5.1)
+subset5.1.pca <- prcomp(subset5.1[, -3],  
+                              scale = TRUE)
+summary(subset5.1.pca)
+
+# Scree plot
+fviz_eig(subset5.1.pca, addlabels = TRUE, barfill = "#264653",
+         barcolor = "#264653", linecolor = "black",) 
+
+# destination states - eigenvalue plot
+
+
+# Create a scatter plot with colored points based on the state information
+PC1_s5.1 <- subset5.1.pca$x[,1]
+PC2_s5.1 <- subset5.1.pca$x[,2]
+ggplot(subset5.1, 
+       aes(x = PC1_s5.1, 
+           y = PC2_s5.1, 
+           color = DEST_STATE_ABR)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values = c("#264653", "#287271", "#2a9d8f", "#8ab17d","#e9c46a", "#f4a261", "#e76f51")) +
+  labs(title = "Outlier Detection using PCA - Virgina (Destination)", color = "State", x = "PC1", y = "PC2")
+
+# PCA for plotting by autoplot
+s5.1_auto <- autoplot(pam(subset5.1[-3], 3), frame = TRUE, frame.type = 'norm') +
+  labs(title="PCA Plot - Virgina (Destination)")
+s5.1_auto + 
+  scale_fill_manual(values = c("#8ab17d", "#287271", "#f4a261")) + 
+  scale_color_manual(values = c("#8ab17d", "#287271", "#f4a261"))
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
