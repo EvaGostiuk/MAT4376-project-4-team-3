@@ -3,9 +3,6 @@
 Using at least 4 anomaly detection algorithms seen in class, identify anomalous observations in the dataset. 
 The outliers identified in each anomaly detection algorithm is based on the unique "X" value assigned to each unit in the subset.
 
-### Grubb's Test
-Outliers Identified:
-
 
 ### Principle Component Analysis (PCA)
 Outliers Identified:
