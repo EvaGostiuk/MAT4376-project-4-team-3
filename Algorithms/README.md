@@ -21,7 +21,6 @@ Outliers Identified:
 382028
 46425
 93004
-46425
 
 ### Subspace Outlier Detection (SOD) Algorithm
 Outliers Identified:
