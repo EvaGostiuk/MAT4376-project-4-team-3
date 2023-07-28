@@ -45,3 +45,5 @@ Outliers Identified:
 
 ### Common by all methods:
 {42767, 93182, 259286, 467791, 477922}
+
+[Outliers Chart](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/outliers_chart.png)
