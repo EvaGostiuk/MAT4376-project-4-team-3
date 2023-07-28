@@ -1,7 +1,7 @@
 ## Algorithms Used to Detect Outliers/Anomalous Datapoints
 
 Using at least 4 anomaly detection algorithms seen in class, identify anomalous observations in the dataset. 
-The outliers identified in each anomaly detection algorithm is based on the unique "X" value assigned to each unit in the subset.
+The outliers identified in each anomaly detection algorithm are based on the unique "X" value assigned to each unit in the subset.
 
 
 ### Principle Component Analysis (PCA)
@@ -46,4 +46,4 @@ Outliers Identified:
 ### Common by all methods:
 {42767, 93182, 259286, 467791, 477922}
 
-[Outliers Chart](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/outliers_chart.png)
+![Outliers Chart](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/outliers_chart.png)
