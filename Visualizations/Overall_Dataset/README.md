@@ -3,6 +3,11 @@
 ### Histogram of Destination and Origin Abbreviation - STACKED
 ![Histogram of Destination Abbreviation and Origin Abbreviation Stacked](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/Stacked_hist_Origin_State.png?raw=true)
 &nbsp;
+
+### Overall Delays 
+![Overall Delays](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/delays.png?raw=true)
+&nbsp;
+
 ### Pie Chart of Frequency of Day of Week - Version 2
 ![Pie Chart of Frequency of Day of Week - Version 2](https://github.com/EvaGostiuk/MAT4376-project-4-team-3/blob/master/Visualizations/Overall_Dataset/PIE_DOW_Freq.png?raw=true)
 &nbsp;
