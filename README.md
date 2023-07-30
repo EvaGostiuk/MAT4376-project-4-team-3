@@ -2,7 +2,7 @@
 *Team 3: Alli Selwah, Eva Gostiuk, Emily McDonald*
 
 
-## Interactive Newspaper link
+## Interactive Newspaper Link
 [Interactive Newspaper Link]()
 
 ## Newspaper PDF
