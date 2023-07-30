@@ -16,7 +16,7 @@ There are the following 3 sections we want to highlight within this file:
 [Visualizations can be viewed HERE](Visualizations/README.md). This collection of images are those that were included within the video, as well as some initial visualizations we looked into at the beginning of the project. 
 
 ## Data Dictionary
-[Data Dictionary can be viewed HERE](https://docs.google.com/spreadsheets/d/1YChxFxhDPiaDYDHnIBSFnG-8AQ06vkoaUf_nCnQioMM/edit?usp=sharing) This collection of terms are those that were included within the newspaper, as well as some initial terms we looked into at the beginning of the project. 
+[Data Dictionary can be viewed HERE.](https://docs.google.com/spreadsheets/d/1YChxFxhDPiaDYDHnIBSFnG-8AQ06vkoaUf_nCnQioMM/edit?usp=sharing) This collection of terms are those that were included within the newspaper, as well as some initial terms we looked into at the beginning of the project. 
 
 
 ## Tasks
