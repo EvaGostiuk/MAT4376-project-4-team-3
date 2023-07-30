@@ -4,8 +4,9 @@
 
 ## Interactive Newspaper link
 [Interactive Newspaper Link]()
+
 ## Newspaper PDF
-[Newspaper PDF](MAT4376_Project4_Team3_Newspaper.pdf)
+The base newspaper used when creating the interactive version above can be found here: [Newspaper PDF](MAT4376_Project4_Team3_Newspaper.pdf). This is NOT the final version as audio and interactive aspects are not included. 
 
 ## How This Page Works
 
