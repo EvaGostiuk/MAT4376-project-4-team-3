@@ -3,7 +3,7 @@
 
 
 ## Interactive Newspaper Link
-[Interactive Newspaper Link]()
+[Interactive Newspaper Link](https://vivante.itch.io/mat4376-project4)
 
 ## Newspaper PDF
 The base newspaper used when creating the interactive version above can be found here: [Newspaper PDF](MAT4376_Project4_Team3_Newspaper.pdf). This is NOT the final version as audio and interactive aspects are not included. 
